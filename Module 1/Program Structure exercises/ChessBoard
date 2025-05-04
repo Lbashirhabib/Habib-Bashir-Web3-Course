@@ -1,1 +1,12 @@
+const size = 8; // Can be changed to any size
+let chessboard = "";
 
+for (let row = 0; row < size; row++) {
+  for (let col = 0; col < size; col++) {
+    // Alternate between space and # based on row+col position
+    chessboard += (row + col) % 2 === 0 ? " " : "#";
+  }
+  chessboard += "\n"; // Add newline at the end of each row
+}
+
+console.log(chessboard);
