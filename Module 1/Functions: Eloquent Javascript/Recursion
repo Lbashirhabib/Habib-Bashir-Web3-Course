@@ -1,1 +1,15 @@
-
+function isEven(n) {
+    // Handle negative numbers by converting to positive
+    if (n < 0) return isEven(-n);
+    // Base cases
+    if (n === 0) return true;
+    if (n === 1) return false;
+    // Recursive now
+    return isEven(n - 2);
+  }
+  console.log(isEven(50));
+  // → true
+  console.log(isEven(75));
+  // → false
+  console.log(isEven(-1));
+  // → false
