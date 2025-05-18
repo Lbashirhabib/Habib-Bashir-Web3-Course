@@ -1,0 +1,24 @@
+async function activityTable(day) {
+    const hourlyCounts = new Array(24).fill(0);
+    
+    const logFileList = await textFile("camera_logs.txt");
+    const logFiles = logFileList.split("\n").filter(file => file.trim());
+    
+ 
+    for (const file of logFiles) {
+        const content = await textFile(file);
+        const timestamps = content.split("\n").filter(ts => ts.trim());
+        
+        for (const timestamp of timestamps) {
+            const date = new Date(Number(timestamp));
+            if (date.getDay() === day) {
+                const hour = date.getHours();
+                hourlyCounts[hour]++;
+            }
+        }
+    }
+    
+    return hourlyCounts;
+}
+activityTable(1)
+  .then(table => console.log(activityGraph(table)));
